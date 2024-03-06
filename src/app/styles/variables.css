@@ -1,0 +1,9 @@
+:root {
+  /* colors */
+  --color-orange: #ffc700;
+  --color-background: var(--color-orange);
+
+  /* sizes */
+  --container-max-width: 1320px;
+  --container-padding-x: 16px;
+}
