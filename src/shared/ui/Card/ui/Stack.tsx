@@ -1,5 +1,5 @@
 import { Card } from '@shared/ui/Card';
-import { PropsWithChildren, useMemo } from 'react';
+import { PropsWithChildren, memo, useMemo } from 'react';
 import styled from 'styled-components';
 
 type Props = PropsWithChildren<{
@@ -33,7 +33,7 @@ const StackStyledComponent = styled.div`
     }
 `;
 
-export default function Stack({ children, levels = 2 }: Props) {
+export default memo(function Stack({ children, levels = 2 }: Props) {
     const items = useMemo(
         () =>
             Array(levels)
@@ -51,4 +51,4 @@ export default function Stack({ children, levels = 2 }: Props) {
             <div>{children}</div>
         </StackStyledComponent>
     );
-}
+});

@@ -1,18 +1,15 @@
-import QuizEntity, { QuestionEntity } from '@entities/quiz';
-import { ComponentProps } from 'react';
+import QuizEntity from '@entities/quiz';
+import { ComponentProps, memo } from 'react';
 
 type Props = {
-    data: QuestionEntity.Model;
+    question: ComponentProps<typeof QuizEntity.Question.Card>['question'];
+    answer: Omit<ComponentProps<typeof QuizEntity.Answer.Group>, 'onChange'>;
     onAnswerChange?: ComponentProps<typeof QuizEntity.Answer.Group>['onChange'];
 };
-export default function Card({ data, onAnswerChange }: Props) {
+export default memo(function Card({ question, answer, onAnswerChange }: Props) {
     return (
-        <QuizEntity.Question.Card
-            question={{
-                title: data.title,
-                description: data.description
-            }}>
-            <QuizEntity.Answer.Group {...data.answer} onChange={onAnswerChange} />
+        <QuizEntity.Question.Card question={question}>
+            <QuizEntity.Answer.Group {...answer} onChange={onAnswerChange} />
         </QuizEntity.Question.Card>
     );
-}
+});
