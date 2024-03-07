@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import styled from 'styled-components'
 
 type SizesKeys = 1 | 2 | 3 | 4 | 5 | 6
@@ -28,15 +29,16 @@ const H4 = styled.h4`
 const H5 = styled.h5`
   font-size: ${sizesMap.get(5)}px;
 `
-const H6 = styled.h6`
+
+const H6 = memo(styled.h6`
   font-size: ${sizesMap.get(6)}px;
-`
+`)
 
 export default {
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6
+  H1: memo(H1),
+  H2: memo(H2),
+  H3: memo(H3),
+  H4: memo(H4),
+  H5: memo(H5),
+  H6: memo(H6)
 }

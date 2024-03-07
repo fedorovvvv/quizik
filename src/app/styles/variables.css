@@ -3,6 +3,9 @@
   --color-orange: #ffc700;
   --color-background: var(--color-orange);
 
+  --color-txt: #232323;
+  --color-txt-secondary: #333333;
+
   /* sizes */
   --container-max-width: 1320px;
   --container-padding-x: 16px;

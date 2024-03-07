@@ -1,13 +1,14 @@
 import Heading from '@shared/ui/Heading';
 import { memo } from 'react';
 import styled from 'styled-components';
+import { Model } from '../model';
 
 type Props = {
-  title: string;
-  description?: string;
+  title: Model['title'];
+  description?: Model['description'];
 };
 
-const QuestionStyledComponent = styled.div`
+const QuestionTextStyledComponent = styled.div`
   p {
     margin-top: 8px;
     font-size: 16px;
@@ -15,11 +16,11 @@ const QuestionStyledComponent = styled.div`
   }
 `;
 
-export default memo(function Question({ title, description }: Props) {
+export default memo(function QuestionText({ title, description }: Props) {
   return (
-    <QuestionStyledComponent>
+    <QuestionTextStyledComponent>
       <Heading.H2>{title}</Heading.H2>
       {description && <p>{description}</p>}
-    </QuestionStyledComponent>
+    </QuestionTextStyledComponent>
   );
 });

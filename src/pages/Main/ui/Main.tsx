@@ -1,22 +1,41 @@
-import type React from 'react'
-import { LayoutContainerCentered } from '@shared/ui/LayoutContainer'
-import Layout from '@pages/Layout'
-import { QuizCard } from '@shared/ui/QuizCard'
+import type React from 'react';
+import { LayoutContainerCentered } from '@shared/ui/LayoutContainer';
+import Layout from '@pages/Layout';
+import { ControlGroup } from '@shared/ui/Control';
+import { ComponentProps, useState } from 'react';
+import QuizWidget from '@widgets/quiz';
+import QuizEntity from '@entities/quiz';
 
 const Main: React.FC = () => {
-  return (
-    <Layout>
-      <LayoutContainerCentered>
-        <QuizCard
-          question={{
-            title: 'Theme',
-            description:
-              'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-          }}
-        />
-      </LayoutContainerCentered>
-    </Layout>
-  )
-}
+    const [answer, setAnswer] = useState<ComponentProps<typeof ControlGroup>['value']>();
 
-export default Main
+    const controlGroupOptions: ComponentProps<typeof ControlGroup>['options'] = [
+        'Green',
+        'Orange',
+        'Red'
+    ].map((value) => ({ value: value.toLowerCase(), label: value }));
+
+    return (
+        <Layout>
+            <LayoutContainerCentered>
+                <QuizWidget.Question.Stack>
+                    <QuizWidget.Question.Card
+                        data={
+                            new QuizEntity.Question.Model({
+                                title: `Theme`,
+                                description: `Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups. \n Answer: ${answer}`,
+                                answer: {
+                                    options: controlGroupOptions,
+                                    multiple: true
+                                }
+                            })
+                        }
+                        onAnswerChange={(answer) => setAnswer(answer)}
+                    />
+                </QuizWidget.Question.Stack>
+            </LayoutContainerCentered>
+        </Layout>
+    );
+};
+
+export default Main;

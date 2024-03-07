@@ -23,6 +23,7 @@
 
 body {
   background: var(--color-background);
+  color: var(--color-txt);
   min-width: 320px;
   min-height: 100vh;
   display: flex;
